@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('department_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->integer('department_id')->references('id')->on('departments')->onDelete('cascade')->nullable();
             $table->string('photo')->nullable();
             $table->text('bio')->nullable();
             $table->string('mobile')->nullable();

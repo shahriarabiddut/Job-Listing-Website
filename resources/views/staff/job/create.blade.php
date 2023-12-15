@@ -25,6 +25,10 @@
                         <td><input required name="company" type="text" class="form-control"></td>
                     </tr>
                     <tr>
+                        <th>Company Details</th>
+                        <td><textarea name="company_details" class="form-control" row='2'>N/A</textarea></td>
+                    </tr>
+                    <tr>
                         <th>Company Logo</th>
                         <td><input name="company_logo" type="file" ></td>
                     </tr>
@@ -33,26 +37,34 @@
                         <td><textarea name="requirement" class="form-control" row='2'></textarea></td>
                     </tr>
                     <tr>
+                        <th>Qualification</th>
+                        <td><textarea name="qualification" class="form-control" row='2'>N/A</textarea></td>
+                    </tr>
+                    <tr>
                         <th>Description</th>
                         <td><textarea name="description" class="form-control" row='5'></textarea></td>
                     </tr>
                     <tr>
                         <th>Category</th>
                         <td><select name="category" class="form-control">
-                            <option value="1">1</option>
+                            <option selected value="1">1</option>
                             <option value="2">2</option>
                         </select></td>
                     </tr>
                     <tr>
                         <th>Job Type</th>
                         <td><select name="job_type" class="form-control">
-                            <option value="full_time">Full Time</option>
+                            <option selected value="full_time">Full Time</option>
                             <option value="part_time">Part Time</option>
                         </select></td>
                     </tr>
                     <tr>
                         <th>Salary</th>
                         <td><input required name="job_salary" type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <th>Vacancy</th>
+                        <td><input required name="vacancy" type="text" class="form-control"></td>
                     </tr>
                     <tr>
                         <th>Tags</th>
@@ -65,6 +77,13 @@
                     <tr>
                         <th>Deadline</th>
                         <td><input required name="deadline" type="date" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <th>Job Status</th>
+                        <td><select name="status" class="form-control">
+                            <option selected value="1">Active</option>
+                            <option value="0">Disable</option>
+                        </select></td>
                     </tr>
                     <tr>
                         <td colspan="2">

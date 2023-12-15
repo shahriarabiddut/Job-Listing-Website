@@ -57,6 +57,18 @@
                       <button type="submit" class="btn btn-primary btn-block"> Login </button>
                     </div>
                   </form>
+                    @if (Route::has('staff.password.request'))
+                    <p class="text-center">Forgot Your Password?
+                      <a href="{{ route('password.request') }}">Request New Password</a>
+                    </p>
+                    @endif
+                    <hr>
+                    @if (Route::has('staff.register'))
+                    <p class="text-center">Don't Have an account?
+                        <a href="{{ route('staff.register') }}" class="btn btn-block btn-info">
+                            <i class="fa fa-signup m-2"></i>Create an Account</a>
+                    </p>
+                    @endif
                 </div>
               </div>
             </div>

@@ -85,6 +85,13 @@
                     <p class="text-center">Have an account ? 
                       <a href="{{ route('login') }}">Log In</a>
                     </p>
+                    <hr>
+                    @if (Route::has('staff.register'))
+                    <p class="text-center">Create a Recruiter account to Post Job?
+                        <a href="{{ route('staff.register') }}" class="btn btn-block btn-warning">
+                            <i class="fa fa-signup m-2"></i>Create a Recruiter Account</a>
+                    </p>
+                    @endif
                   </form>
                 </div>
               </div>

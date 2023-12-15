@@ -32,9 +32,11 @@
    Email Verification Enabled for user
    Login for all
    Registration Only For Users
-2. Admin CRUD for Users and Staff
+   Registration Only For Recruiter
+2. Admin CRUD for Users and Recruiter
 3. CRUD Management
-   3.1 Job Posting
+   3.1 Job CRUD and Jobs pages and view in front
+   3.2 Job Search by Tags
 
 ## Learning Laravel
 

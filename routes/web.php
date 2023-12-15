@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupportController;
 
@@ -16,11 +17,11 @@ use App\Http\Controllers\SupportController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('root');
+Route::get('/', [HomeController::class, 'index'])->name('root');
+Route::get('/jobdetails/{id}', [HomeController::class, 'jobdetails'])->name('jobdetails');
+Route::get('/jobs', [HomeController::class, 'jobs'])->name('jobs');
 Route::get('/home', function () {
-    return view('pages.home');
+    return redirect()->route('root');
 })->name('home');
 Route::get('/about', function () {
     return view('pages.about');
@@ -41,8 +42,6 @@ Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
     //Support Routes
     Route::get('support/{id}/delete', [SupportController::class, 'destroy'])->name('support.destroy');
     Route::resource('support', SupportController::class);
-    // Book Crud
-    Route::resource('book', BookController::class);
 });
 
 require __DIR__ . '/auth.php';

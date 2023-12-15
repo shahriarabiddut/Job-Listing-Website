@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupportController;
+use App\Http\Controllers\Staff\JobController;
 use App\Http\Controllers\Staff\HomeController;
 use App\Http\Controllers\Staff\EmailController;
+use App\Http\Controllers\Staff\Auth\RegisteredUserController;
 use App\Http\Controllers\Staff\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Staff\JobController;
 
 //Staff Routes
 Route::namespace('Staff')->prefix('recruiter')->name('staff.')->group(function () {
@@ -13,6 +14,9 @@ Route::namespace('Staff')->prefix('recruiter')->name('staff.')->group(function (
         //Login Route
         Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
         Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
+        //Register Route
+        Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+        Route::post('register', [RegisteredUserController::class, 'store']);
     });
     Route::middleware('staff')->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name('dashboard');
@@ -33,6 +37,6 @@ Route::middleware('staff')->prefix('recruiter')->name('staff.')->group(function 
     Route::get('support/{id}/reply', [SupportController::class, 'staffReply'])->name('support.reply');
     Route::put('support/{id}', [SupportController::class, 'staffReplyUpdate'])->name('support.replyUpdate');
     // JOB POSTING CRUD
-    Route::get('job/{id}/delete', [JobController::class, 'destroy']);
+    Route::get('job/{id}/delete', [JobController::class, 'destroy'])->name('job.delete');
     Route::resource('job', JobController::class);
 });

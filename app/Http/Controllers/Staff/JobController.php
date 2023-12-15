@@ -17,7 +17,8 @@ class JobController extends Controller
         //
         $staff_id = Auth::guard('staff')->user()->id;
         $data = Job::all()->where('staff_id', $staff_id);
-        return view('staff.job.index', ['data' => $data]);
+        $delete = 1;
+        return view('staff.job.index', ['data' => $data, 'delete' => $delete]);
     }
 
     /**
@@ -47,16 +48,17 @@ class JobController extends Controller
             'tags' => 'required',
             'location' => 'required',
             'deadline' => 'required',
+            'vacancy' => 'required',
+            'status' => 'required',
         ]);
-        //If user Gieven any PHOTO
-        if ($request->hasFile('company_logo')) {
-            $data->company_logo = $request->file('company_logo')->store('CompanyLogo', 'public');
-        }
         //Data save to Database 
         $data = new Job();
         $data->staff_id = $request->staff_id;
         $data->title = $request->title;
+        $data->vacancy = $request->vacancy;
         $data->company = $request->company;
+        $data->company_details = $request->company_details;
+        $data->vacancy = $request->vacancy;
         $data->requirement = $request->requirement;
         $data->description = $request->description;
         $data->category = $request->category;
@@ -65,8 +67,13 @@ class JobController extends Controller
         $data->tags = $request->tags;
         $data->location = $request->location;
         $data->deadline = $request->deadline;
-        $data->status = 1;
+        $data->status = $request->status;
 
+        //If user Gieven any PHOTO
+        if ($request->hasFile('company_logo')) {
+            $data->company_logo = $request->file('company_logo')->store('CompanyLogo', 'public');
+        }
+        //
         $data->save();
         //Data Saved
         return redirect()->route('staff.job.index')->with('success', 'Job Posted Successfully!');
@@ -95,7 +102,48 @@ class JobController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $data = Job::find($id);
+        $request->validate([
+            'staff_id' => 'required',
+            'title' => 'required',
+            'company' => 'required',
+            'company_logo' => 'required',
+            'requirement' => 'required',
+            'category' => 'required',
+            'job_type' => 'required',
+            'job_salary' => 'required',
+            'tags' => 'required',
+            'location' => 'required',
+            'deadline' => 'required',
+            'vacancy' => 'required',
+            'status' => 'required',
+        ]);
+        $data->staff_id = $request->staff_id;
+        $data->title = $request->title;
+        $data->vacancy = $request->vacancy;
+        $data->company = $request->company;
+        $data->company_details = $request->company_details;
+        $data->vacancy = $request->vacancy;
+        $data->requirement = $request->requirement;
+        $data->description = $request->description;
+        $data->category = $request->category;
+        $data->job_salary = $request->job_salary;
+        $data->job_type = $request->job_type;
+        $data->tags = $request->tags;
+        $data->location = $request->location;
+        $data->deadline = $request->deadline;
+        $data->status = $request->status;
+
+        //If user Gieven any PHOTO
+        if ($request->hasFile('company_logo')) {
+            $data->company_logo = $request->file('company_logo')->store('CompanyLogo', 'public');
+        } else {
+            $data->company_logo = $request->prev_logo;
+        }
         //
+        $data->save();
+
+        return redirect()->route('staff.job.index')->with('success', 'Job Updated Successfully!');
     }
 
     /**
@@ -104,5 +152,9 @@ class JobController extends Controller
     public function destroy(string $id)
     {
         //
+        $staff_id = Auth::guard('staff')->user()->id;
+        $job = Job::all()->where('staff_id', '=', $staff_id)->where('id', '=', $id)->first();
+        $job->delete();
+        return redirect()->route('staff.job.index')->with('danger', 'Job Deleted Successfully!');
     }
 }
