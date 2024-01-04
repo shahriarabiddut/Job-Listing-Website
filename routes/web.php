@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupportController;
@@ -19,6 +19,8 @@ use App\Http\Controllers\SupportController;
 
 Route::get('/', [HomeController::class, 'index'])->name('root');
 Route::get('/jobdetails/{id}', [HomeController::class, 'jobdetails'])->name('jobdetails');
+Route::get('/jobSearch/{id}', [HomeController::class, 'jobSearch'])->name('jobSearch');
+Route::post('/jobSearch', [HomeController::class, 'jobSearchHome'])->name('jobSearchHome');
 Route::get('/jobs', [HomeController::class, 'jobs'])->name('jobs');
 Route::get('/home', function () {
     return redirect()->route('root');
@@ -42,8 +44,12 @@ Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
     //Support Routes
     Route::get('support/{id}/delete', [SupportController::class, 'destroy'])->name('support.destroy');
     Route::resource('support', SupportController::class);
+    //Application Routes
+    Route::get('application/{id}/delete', [ApplicationController::class, 'destroy'])->name('application.destroy');
+    Route::get('application/{id}/apply', [ApplicationController::class, 'apply'])->name('application.apply');
+    Route::resource('application', ApplicationController::class);
 });
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
-require __DIR__ . '/staff.php';
+require __DIR__ . '/recruiter.php';

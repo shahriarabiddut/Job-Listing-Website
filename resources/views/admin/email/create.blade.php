@@ -52,7 +52,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="hidden" name="staff_id" value="0">
+                            <input type="hidden" name="recruiter_id" value="0">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </td>
                     </tr>

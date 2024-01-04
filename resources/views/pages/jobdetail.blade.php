@@ -27,45 +27,62 @@
                     <h4 class="mb-3">Qualifications</h4>
                     <p>{{ $jobs->qualification }}</p>
                 </div>
-
-                {{-- <div class="">
-                    <h4 class="mb-4">Apply For The Job</h4>
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-12 col-sm-6">
-                                <input type="text" class="form-control" placeholder="Your Name">
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <input type="email" class="form-control" placeholder="Your Email">
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <input type="text" class="form-control" placeholder="Portfolio Website">
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <input type="file" class="form-control bg-white">
-                            </div>
-                            <div class="col-12">
-                                <textarea class="form-control" rows="5" placeholder="Coverletter"></textarea>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100" type="submit">Apply Now</button>
-                            </div>
-                        </div>
-                    </form>
-                </div> --}}
+                @auth('recruiter')
+                @if ($jobs->recruiter_id==Auth::guard('recruiter')->user()->id)
+                <div class="bg-info rounded p-3 mt-2 text-white wow slideInUp">
+                    <h4 class="mb-3 bg-light p-1 text-center">Applications</h4>
+                    <table class="items-list col-lg-12 table-hover" style="border-collapse:inherit;">
+                        <thead>
+                            <tr class="p-2">
+                                <th class="text-white font-weight-bolder">No.</th>
+                                <th class="text-white font-weight-bolder">Applicant</th>
+                                <th class="text-white font-weight-bolder">Added Date</th>
+                                <th class="text-white font-weight-bolder">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($jobs->application as $key => $application)
+                            <tr>
+                                <td>{{ $key+1 }}</td>
+                                <td>{{ $application->created_at }}</td>
+                                <td>{{ $application->user->name }}</td>
+                                <td><a class="btn btn-primary mx-1" href="{{ route('recruiter.application.showRecruiter',$application->id) }}">View</a>
+                                   </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>     
+                </div>
+                @endif
+                @endauth
             </div>
 
-            <div class="col-lg-4">
-                <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
+            <div class="col-lg-4 ">
+                @auth
+                @foreach (Auth::user()->application as $application)
+                @if($application->job_id !=$jobs->id)
+                <div class="bg-light rounded p-2 mb-1 wow slideInUp text-center" data-wow-delay="0.1s">
+                    <h4 class="mb-4 text-center">Apply For Job</h4>
+                    <p><a class="btn d-block btn-primary text-center" href="{{ route('user.application.apply',$jobs->id) }}">Apply Now</a></p>
+                </div>
+                @elseif($application->job_id ==$jobs->id)
+                <div class="bg-info rounded p-2 mb-1 wow slideInUp text-center text-white" data-wow-delay="0.1s">
+                    Already Applied
+                </div>
+                @endif
+                @endforeach
+                @endauth
+                <div class="bg-light rounded p-3 mb-2 wow slideInUp" data-wow-delay="0.1s">
                     <h4 class="mb-4">Job Summery</h4>
                     <p><i class="fa fa-angle-right text-primary me-2"></i>Published On: {{ $jobs->created_at }}</p>
                     <p><i class="fa fa-angle-right text-primary me-2"></i>Vacancy: {{ $jobs->vacancy }}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Application : {{ count($jobs->application) }}</p>
                     <p><i class="fa fa-angle-right text-primary me-2"></i>Job Nature: @if ($jobs->job_type=='full_time') Full Time @else Part Time @endif</p>
                     <p><i class="fa fa-angle-right text-primary me-2"></i>Salary: {{ $jobs->job_salary }}</p>
                     <p><i class="fa fa-angle-right text-primary me-2"></i>Location: {{ $jobs->location }}</p>
                     <p class="m-0"><i class="fa fa-angle-right text-primary me-2"></i>Date Line: {{ $jobs->deadline }}</p>
                 </div>
-                <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
+                <div class="bg-light rounded p-3 mb-2 wow slideInUp" data-wow-delay="0.1s">
                     <h4 class="mb-4">Company Detail</h4>
                     <h6 class="mb-4">{{ $jobs->company }}</h6>
                     <p class="m-0">{{ $jobs->company_details }}</p>

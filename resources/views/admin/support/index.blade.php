@@ -60,7 +60,7 @@
                             <td>{{ $d->category }}</td>
                             <td>
                                 @if ($d->repliedby)
-                                {{ $d->staff->name }}
+                                {{ $d->recruiter->name }}
                                 @else
                                 No Reply
                                 @endif

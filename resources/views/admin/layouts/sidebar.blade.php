@@ -48,7 +48,7 @@
         @endif" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-table"></i>
-            <span>Staff Departments</span>
+            <span>Recruiter Departments</span>
         </a>
         <div id="collapseTwo" class="collapse @if(request()->is('admin/department*')) show @endif" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
@@ -59,21 +59,21 @@
             </div>
         </div>
     </li>
-    <!-- Nav Item Staff - Utilities Collapse Menu -->
+    <!-- Nav Item Recruiter - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link @if (!request()->is('admin/staff*'))
+        <a class="nav-link @if (!request()->is('admin/recruiter*'))
             collapsed
         @endif" href="#" data-toggle="collapse" data-target="#collapseThree"
             aria-expanded="true" aria-controls="collapseThree">
             <i class="fas fa-fw fa-users"></i>
-            <span>Staff</span>
+            <span>Recruiter</span>
         </a>
-        <div id="collapseThree" class="collapse @if(request()->is('admin/staff*')) show @endif" aria-labelledby="headingUtilities"
+        <div id="collapseThree" class="collapse @if(request()->is('admin/recruiter*')) show @endif" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Staff Management</h6>
-                <a class="collapse-item" href="{{ route('admin.staff.index') }}">View All</a>
-                <a class="collapse-item" href="{{ route('admin.staff.create') }}">Add new</a>
+                <h6 class="collapse-header">Recruiter Management</h6>
+                <a class="collapse-item" href="{{ route('admin.recruiter.index') }}">View All</a>
+                <a class="collapse-item" href="{{ route('admin.recruiter.create') }}">Add new</a>
             </div>
         </div>
     </li>

@@ -44,9 +44,9 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'staff' => [
+        'recruiter' => [
             'driver' => 'session',
-            'provider' => 'staff',
+            'provider' => 'recruiter',
         ],
     ],
 
@@ -76,9 +76,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
-        'staff' => [
+        'recruiter' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Staff::class,
+            'model' => App\Models\Recruiter::class,
         ],
 
 
@@ -113,13 +113,13 @@ return [
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
-        ],'admins' => [
+        ], 'admins' => [
             'provider' => 'admins',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
-        ],'staff' => [
-            'provider' => 'staff',
+        ], 'recruiter' => [
+            'provider' => 'recruiter',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

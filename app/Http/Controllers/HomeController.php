@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
@@ -31,39 +32,47 @@ class HomeController extends Controller
     public function jobs()
     {
         //
-        $data = Job::all();
+        $jobs = Job::all();
         $delete = 0;
+        $data = [];
+        // Check with Deadline
+        $today = Carbon::now(); // get current date and time
+        $todayDate = $today->setTimezone('GMT+6')->format('Y-m-d');
+        foreach ($jobs as $job) {
+            if ($todayDate <= $job->deadline && $job->status == 1) {
+                $data[] = $job;
+            }
+        }
+        //
         return view('pages.jobs', ['data' => $data, 'delete' => $delete]);
     }
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function jobSearch(string $id)
     {
         //
+        //
+        $jobs = Job::all()->where('category', $id);
+        $delete = 0;
+        $data = [];
+        // Check with Deadline
+        $today = Carbon::now(); // get current date and time
+        $todayDate = $today->setTimezone('GMT+6')->format('Y-m-d');
+        foreach ($jobs as $job) {
+            if ($todayDate <= $job->deadline && $job->status == 1) {
+                $data[] = $job;
+            }
+        }
+        //
+        return view('pages.jobs', ['data' => $data, 'delete' => $delete]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function jobSearchHome(Request $request)
     {
         //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        if ($request->keyword == null && $request->location == null && $request->category != null) {
+            return redirect()->route('jobSearch', $request->category);
+        }
     }
 }

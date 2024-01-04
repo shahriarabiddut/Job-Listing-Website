@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\EmailController;
-use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\RecruiterController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\StaffDepartmentController;
+use App\Http\Controllers\Admin\RecruiterDepartmentController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 
 //Admin
@@ -38,16 +38,16 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('user', UserController::class);
 
     // Department Routes
-    Route::get('department/{id}/delete', [StaffDepartmentController::class, 'destroy']);
-    Route::resource('department', StaffDepartmentController::class);
+    Route::get('department/{id}/delete', [RecruiterDepartmentController::class, 'destroy']);
+    Route::resource('department', RecruiterDepartmentController::class);
 
-    // Staff 
+    // Recruiter 
 
-    // Staff Crud
-    Route::get('staff/{id}/delete', [StaffController::class, 'destroy']);
-    Route::get('staff/{id}/change', [StaffController::class, 'change']);
-    Route::put('staff/{id}/changeUpdate', [StaffController::class, 'changeUpdate'])->name('staff.changeUpdate');
-    Route::resource('staff', StaffController::class);
+    // Recruiter Crud
+    Route::get('recruiter/{id}/delete', [RecruiterController::class, 'destroy']);
+    Route::get('recruiter/{id}/change', [RecruiterController::class, 'change']);
+    Route::put('recruiter/{id}/changeUpdate', [RecruiterController::class, 'changeUpdate'])->name('recruiter.changeUpdate');
+    Route::resource('recruiter', RecruiterController::class);
 
     //Suport Ticekts View
     Route::get('support', [SupportController::class, 'adminIndex'])->name('support.index');

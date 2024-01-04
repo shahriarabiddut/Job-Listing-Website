@@ -29,7 +29,15 @@
                             <div class="col-sm-12 col-md-8 d-flex align-items-center">
                                 <img class="flex-shrink-0 img-fluid border rounded" src="{{$jobs->company_logo ? asset('storage/'.$jobs->company_logo) : url('images/user.png')}}" alt="" style="width: 80px; height: 80px;">
                                 <div class="text-start ps-4">
-                                    <h5 class="mb-3">{{ $jobs->title }}</h5>
+                                    <h5 class="mb-3">{{ $jobs->title }} 
+                                    @if ($delete!=0)
+                                        @if ($jobs->status==0)
+                                        <span class="bg-danger p-1 text-white h6"> ( Disabled ) </span>
+                                        @else
+                                        <span class="bg-success p-1 text-white h6"> ( Active ) </span>
+                                        @endif
+                                    @endif
+                                    </h5>
                                     <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $jobs->location }}</span>
                                     <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>
                                         @if ($jobs->job_type=='full_time') Full Time @else Part Time @endif
@@ -41,7 +49,8 @@
                                 <div class="d-flex mb-3">
                                     <a class="btn btn-primary mx-1" href="{{ route('jobdetails',$jobs->id) }}">View</a>
                                     @if ($delete!=0)
-                                    <a class="btn btn-danger mx-1" href="{{ route('staff.job.delete',$jobs->id) }}"><i class="fa fa-trash mx-1"></i>Delete</a>
+                                    <a class="btn btn-warning mx-1" href="{{ route('recruiter.job.edit',$jobs->id) }}"><i class="fa fa-edit mx-1"></i>Edit</a>
+                                    <a class="btn btn-danger mx-1" href="{{ route('recruiter.job.delete',$jobs->id) }}"><i class="fa fa-trash mx-1"></i>Delete</a>
                                     @endif
                                 </div>
                                 <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Aplication Last Date :{{ $jobs->deadline }}</small>
@@ -84,7 +93,7 @@
                                 <div class="d-flex mb-3">
                                     <a class="btn btn-primary mx-1" href="{{ route('jobdetails',$jobs->id) }}">View</a>
                                     @if ($delete!=0)
-                                    <a class="btn btn-danger mx-1" href="{{ route('staff.job.delete',$jobs->id) }}"><i class="fa fa-trash mx-1"></i>Delete</a>
+                                    <a class="btn btn-danger mx-1" href="{{ route('recruiter.job.delete',$jobs->id) }}"><i class="fa fa-trash mx-1"></i>Delete</a>
                                     @endif
                                 </div>
                                 <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Aplication Last Date :{{ $jobs->deadline }}</small>
@@ -127,7 +136,7 @@
                                 <div class="d-flex mb-3">
                                     <a class="btn btn-primary mx-1" href="{{ route('jobdetails',$jobs->id) }}">View</a>
                                     @if ($delete!=0)
-                                    <a class="btn btn-danger mx-1" href="{{ route('staff.job.delete',$jobs->id) }}"><i class="fa fa-trash mx-1"></i>Delete</a>
+                                    <a class="btn btn-danger mx-1" href="{{ route('recruiter.job.delete',$jobs->id) }}"><i class="fa fa-trash mx-1"></i>Delete</a>
                                     @endif
                                 </div>
                                 <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i> Aplication Last Date : {{ $jobs->deadline }}</small>

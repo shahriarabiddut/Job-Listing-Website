@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('subject');
             $table->string('message');
             $table->string('objective');
-            $table->integer('staff_id');
+            $table->integer('recruiter_id');
             $table->timestamps();
         });
     }

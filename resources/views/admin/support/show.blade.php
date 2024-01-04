@@ -41,7 +41,7 @@
                         <th>Replied By</th>
                         <td>
                             @if($data->reply)
-                            {{ $data->staff->name }}
+                            {{ $data->recruiter->name }}
                             @else
                             No Reply Yet!
                             @endif

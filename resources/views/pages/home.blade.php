@@ -20,9 +20,9 @@
 @include('../pages/layouts/jobs')
 <!-- Jobs End -->
 
-<!-- Testimonial Start -->
+{{-- <!-- Testimonial Start -->
 @include('../pages/layouts/testimonial')
-<!-- Testimonial End -->
+<!-- Testimonial End --> --}}
 
 @endsection
 

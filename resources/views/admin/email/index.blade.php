@@ -62,10 +62,10 @@
                             <td>{{ $d->subject }}</td>
                             <td>{{ $d->objective }}</td>
                             <td>
-                                @if ($d->staff_id==0)
+                                @if ($d->recruiter_id==0)
                                     Admin
                                 @else
-                                    {{ $d->staff->name }}
+                                    {{ $d->recruiter->name }}
                                 @endif
                             </td>
                             <td>{{ $d->created_at }}</td>

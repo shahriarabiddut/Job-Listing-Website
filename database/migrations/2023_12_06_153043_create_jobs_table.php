@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('tags');
             $table->date('deadline');
             $table->integer('status');
-            $table->integer('staff_id');
+            $table->integer('recruiter_id');
             $table->timestamps();
         });
     }

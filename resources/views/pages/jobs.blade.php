@@ -1,10 +1,10 @@
 @extends('pages/base')
-@section('title', 'About')
+@section('title', 'Jobs')
 @section('content')
 <div class="my-4">
-<!-- About Start -->
+<!-- Jobs Start -->
 @include('../pages/layouts/jobs')
-<!-- About End -->
+<!-- Jobs End -->
 </div>
 @endsection
 

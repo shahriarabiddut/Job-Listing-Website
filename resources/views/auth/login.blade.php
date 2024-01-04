@@ -40,16 +40,6 @@
                   <div class="text-bold bg-danger text-center text-white p-2">{{ $message }}</div>
                   @enderror
                   <h4 class="card-title mt-3 text-center">Login</h4>
-                  {{-- <p class="text-center">Get started with your free account</p>
-                  <p>
-                    <a href="" class="btn btn-block btn-info">
-                      <i class="fab fa-twitter mr-2"></i>Login via Twitter</a>
-                    <a href="" class="btn btn-block btn-primary">
-                      <i class="fab fa-facebook-f mr-2"></i>Login via facebook</a>
-                  </p>
-                  <p class="text-muted font-weight-bold ">
-                    <span>OR</span>
-                  </p> --}}
                   <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group input-group">
@@ -71,6 +61,12 @@
                     @if (Route::has('password.request'))
                     <p class="text-center">Forgot Your Password?
                       <a href="{{ route('password.request') }}">Request New Password</a>
+                    </p>
+                    @endif
+                    <hr>
+                    @if (Route::has('recruiter.login'))
+                    <p class="text-center">Are You A Recruiter?
+                      <a href="{{ route('recruiter.login') }}">Login as A Recruiter</a>
                     </p>
                     @endif
                     <hr>

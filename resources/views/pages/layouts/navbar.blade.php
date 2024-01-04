@@ -1,4 +1,4 @@
-@php $postjob=0 ; $staffNav=0 ; @endphp
+@php $postjob=0 ; $recruiterNav=0 ; @endphp
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
     <a href="{{ route('root') }}" class="navbar-brand d-flex align-items-center text-center py-0 px-4 px-lg-5">
         <h1 class="m-0 text-primary">@isset($SiteOption) {{ $SiteOption[0]->value }} @endisset</h1>
@@ -19,24 +19,25 @@
                 </div>
             </div>
             <a href="#" class="nav-item nav-link">Contact</a>
-            @auth('staff')
+            @auth('recruiter')
             <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{ route('staff.dashboard') }}"><i class="mx-1 fa fa-users"></i> Recruiter Pofile</a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{ route('recruiter.dashboard') }}"><i class="mx-1 fa fa-users"></i> Recruiter Pofile</a>
                 
                 <div class="dropdown-menu rounded-0 m-0">
-                    <a class="dropdown-item " href="{{ route('staff.profile.view') }}"> <i class="fa fa-user mx-1"></i> Account</a>
-                    <a class="dropdown-item " href="{{ route('staff.job.index') }}"> <i class="fa fa-user mx-1"></i> My Jobs</a>
-                    <a class="dropdown-item " href="{{ route('staff.logout') }}"> <i class="fas fa-fw fa-sign-out-alt"></i> Logout</a>
+                    <a class="dropdown-item " href="{{ route('recruiter.profile.view') }}"> <i class="fa fa-user mx-1"></i> Account</a>
+                    <a class="dropdown-item " href="{{ route('recruiter.job.index') }}"> <i class="fa fa-user mx-1"></i> My Jobs</a>
+                    <a class="dropdown-item " href="{{ route('recruiter.logout') }}"> <i class="fas fa-fw fa-sign-out-alt"></i> Logout</a>
                 </div> 
             </div> 
-            @php $staffNav=1 ; @endphp
+            @php $recruiterNav=1 ; @endphp
             @endauth
-            @if (Route::has('login') && $staffNav!=1)
+            @if (Route::has('login') && $recruiterNav!=1)
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="mx-1 fa fa-users"></i> My Account</a>
                     <div class="dropdown-menu rounded-0 m-0">
                 @auth
                     <a class="dropdown-item " href="{{ route('user.profile') }}"> <i class="fa fa-user mx-1"></i> Account</a>
+                    <a class="dropdown-item " href="{{ route('user.application.index') }}"> <i class="fa fa-user mx-1"></i> Proposals</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"> <i class=" mx-1 fas fa-sign-out-alt"></i>Logout</a>
                     @php $postjob=1 ; @endphp
                 @else
@@ -59,7 +60,7 @@
             @else
             
             @if ($postjob!=1)
-                <a href="{{ route('staff.job.create') }}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Post A Job<i class="fa fa-arrow-right ms-3"></i></a>
+                <a href="{{ route('recruiter.job.create') }}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Post A Job<i class="fa fa-arrow-right ms-3"></i></a>
             @endif
             @endauth
         </div>

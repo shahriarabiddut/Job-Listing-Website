@@ -18,7 +18,7 @@
 
 ## Controller Initialization with crud Command
 
-`php artisan make:controller Staff/SetController -r`
+`php artisan make:controller Recruiter/SetController -r`
 
 ## Model Initialization with migration Command
 
@@ -27,7 +27,7 @@
 ## Project Ongoing Process
 
 1. Multi Auth Complete
-   Admin , Staff & User
+   Admin , Recruiter & User
    Larvel Breeze
    Email Verification Enabled for user
    Login for all
@@ -36,7 +36,9 @@
 2. Admin CRUD for Users and Recruiter
 3. CRUD Management
    3.1 Job CRUD and Jobs pages and view in front
-   3.2 Job Search by Tags
+   3.2 Job Search by Tags - need to work
+   3.3 Appplication Process Done
+   3.4 Recruiter can view Application
 
 ## Learning Laravel
 

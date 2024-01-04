@@ -16,7 +16,7 @@ class EmailController extends Controller
     {
         //
         $data = Email::all();
-        return view('admin.email.index',['data'=>$data]);
+        return view('admin.email.index', ['data' => $data]);
     }
 
     /**
@@ -41,23 +41,23 @@ class EmailController extends Controller
             'message' => 'required',
             'objective' => 'required',
         ]);
-        if($this->isOnline()){
+        if ($this->isOnline()) {
             $mail_data = [
-                'objective'=>$request->objective,
-                'recipient'=>$request->email,
-                'fromEmail'=>'justcsebd@gmail.com',
-                'fromName'=>$request->name,
-                'subject'=>$request->subject,
-                'body'=>$request->message
+                'objective' => $request->objective,
+                'recipient' => $request->email,
+                'fromEmail' => 'justcsebd@gmail.com',
+                'fromName' => $request->name,
+                'subject' => $request->subject,
+                'body' => $request->message
             ];
-            \Mail::send('admin.email.email-template',$mail_data,function($message) use ($mail_data){
+            \Mail::send('admin.email.email-template', $mail_data, function ($message) use ($mail_data) {
                 $message->to($mail_data['recipient'])
-                        ->from($mail_data['fromEmail'],$mail_data['fromName'])
-                        ->subject($mail_data['subject']);
+                    ->from($mail_data['fromEmail'], $mail_data['fromName'])
+                    ->subject($mail_data['subject']);
             });
             //Data save to Database 
             $data = new Email();
-            $data->staff_id = 0;
+            $data->recruiter_id = 0;
             $data->name = $request->name;
             $data->email = $request->email;
             $data->subject = $request->subject;
@@ -65,18 +65,18 @@ class EmailController extends Controller
             $data->objective = $request->objective;
             $data->save();
             //Data Saved
-            return redirect('admin/email')->with('success','Email Sent Successfully!');
-        }else{
+            return redirect('admin/email')->with('success', 'Email Sent Successfully!');
+        } else {
 
-            return redirect()->back()->withInput()->with('error','No Internet Connection');
+            return redirect()->back()->withInput()->with('error', 'No Internet Connection');
         }
-        
     }
     //Check internet Connections
-    public function isOnline($site = 'https://youtube.com'){
-        if(@fopen($site,'r')){
+    public function isOnline($site = 'https://youtube.com')
+    {
+        if (@fopen($site, 'r')) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -88,7 +88,7 @@ class EmailController extends Controller
     {
         //
         $data = Email::find($id);
-        return view('admin.email.show',['data'=>$data]);
+        return view('admin.email.show', ['data' => $data]);
     }
 
     /**
@@ -99,6 +99,6 @@ class EmailController extends Controller
         //
         $data = Email::find($id);
         $data->delete();
-        return redirect('admin/email')->with('danger','Email Data has been deleted Successfully!');
+        return redirect('admin/email')->with('danger', 'Email Data has been deleted Successfully!');
     }
 }
