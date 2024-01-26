@@ -71,6 +71,12 @@
                 </div>
                 @endif
                 @endforeach
+                @if(count(Auth::user()->application)==0)
+                <div class="bg-light rounded p-2 mb-1 wow slideInUp text-center" data-wow-delay="0.1s">
+                    <h4 class="mb-4 text-center">Apply For Job</h4>
+                    <p><a class="btn d-block btn-primary text-center" href="{{ route('user.application.apply',$jobs->id) }}">Apply Now</a></p>
+                </div>
+                @endif
                 @endauth
                 <div class="bg-light rounded p-3 mb-2 wow slideInUp" data-wow-delay="0.1s">
                     <h4 class="mb-4">Job Summery</h4>

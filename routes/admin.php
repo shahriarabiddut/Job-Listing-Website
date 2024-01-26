@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\EmailController;
-use App\Http\Controllers\Admin\RecruiterController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\EmailController;
+use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\Admin\RecruiterController;
 use App\Http\Controllers\Admin\RecruiterDepartmentController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 
@@ -23,6 +24,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 });
 Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     // Settings Crud
+    Route::get('jobs/', [HomeController::class, 'jobs'])->name('jobs.index');
+    Route::get('jobs/application', [HomeController::class, 'application'])->name('jobs.application');
+    Route::get('jobs/application/{id}', [ApplicationController::class, 'show'])->name('jobs.application.show');
+
     Route::get('settings/', [HomeController::class, 'editSetting'])->name('settings.edit');
     Route::put('settings/update/{id}', [HomeController::class, 'updateSetting'])->name('settings.update');
     //Profile

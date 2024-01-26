@@ -77,7 +77,24 @@
             </div>
         </div>
     </li>
-
+<!-- Nav Item Department - Utilities Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link @if (!request()->is('admin/jobs*'))
+        collapsed
+    @endif" href="#" data-toggle="collapse" data-target="#collapsejobs"
+        aria-expanded="true" aria-controls="collapsejobs">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Jobs</span>
+    </a>
+    <div id="collapsejobs" class="collapse @if(request()->is('admin/jobs*')) show @endif" aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Jobs Management</h6>
+            <a class="collapse-item" href="{{ route('admin.jobs.index') }}">View All Jobs</a>
+            <a class="collapse-item" href="{{ route('admin.jobs.application') }}">View All Application</a>
+        </div>
+    </div>
+</li>
    
     <!-- Divider -->
     <hr class="sidebar-divider">
