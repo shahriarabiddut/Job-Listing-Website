@@ -1,69 +1,102 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Job Listing Website
+A Laravel-based job listing website with multi-authentication for Admin, Recruiter, and Users. The system includes CRUD operations for various entities and job application functionalities.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Required Configuration
+- **PHP** >= 8.1
+- **Laravel** 10
 
-## Laravel Storage Link Command
+## Installation
+Follow these steps to set up the project:
 
-`php artisan storage:link`
+**Clone the Repository**:
+```bash
+git clone <repository-url>
+cd <project-directory>
+```
 
-## Databse Initialization Command
+**Install Dependencies**:
+Run the following commands to install the required packages:
+```bash
+composer update
+composer install
+```
 
-`php artisan migrate`
-`php artisan migrate:refresh --seed`
+**Generate Application Key**:
+Generate the Laravel application key: This will update the APP_KEY in your .env file.
+```bash
+php artisan key:generate
+```
 
-## Controller Initialization with crud Command
+**Set Up Storage Link**:
+Create a symbolic link for the storage directory:
+```bash
+php artisan storage:link
+```
 
-`php artisan make:controller Recruiter/SetController -r`
+**Configure Database**:
+Update your .env file with your database credentials:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_user
+DB_PASSWORD=your_database_password
+```
 
-## Model Initialization with migration Command
+**Run Migrations**:
+Initialize the database by running migrations:
+```bash
+php artisan migrate
+```
 
-`php artisan make:model Set -m`
+To seed the database with initial data, use:
+```bash
+php artisan migrate:refresh --seed
+```
 
-## Project Ongoing Process
+## Commands
 
-1. Multi Auth Complete
-   Admin , Recruiter & User
-   Larvel Breeze
-   Email Verification Enabled for user
-   Login for all
-   Registration Only For Users
-   Registration Only For Recruiter
-2. Admin CRUD for Users and Recruiter
-3. CRUD Management
-   3.1 Job CRUD and Jobs pages and view in front
-   3.2 Job Search by Tags - need to work
-   3.3 Appplication Process Done
-   3.4 Recruiter can view Application
+**Create a Controller with CRUD Operations**:
+To generate a controller with CRUD methods, use:
+```bash
+php artisan make:controller <ControllerName> -r
+```
 
-## Learning Laravel
+**Create a Model with Migration**:
+To create a model along with its migration file, use:
+```bash
+php artisan make:model <ModelName> -m
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Project Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. **Multi-Authentication System**
+   - Admin, Recruiter, and User roles are implemented.
+   - Laravel Breeze is used for authentication scaffolding.
+   - Email Verification is enabled for users.
+   - Login is available for all roles.
+   - Registration is only for Users and Recruiters.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Admin CRUD Operations**
+   - Admins can perform CRUD operations for Users and Recruiters.
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+3. **Job Management**
+   - Job CRUD
+   - Job pages and view in front
+   - Job Search by Tags (needs improvement)
+   - Application Process for users
+   - Recruiters can view Applications
 
 ## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+If you'd like to contribute to this project, please follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix.
+3. Submit a pull request.
 
 ## License
+This project is open-source and available under the MIT License.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Support
+For any issues or questions, please contact the development team or open an issue on the repository.
+
